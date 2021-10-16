@@ -16,5 +16,10 @@ namespace Tienda_Electrodomesticos
         {
             InitializeComponent();
         }
+
+        private void txtModelo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
