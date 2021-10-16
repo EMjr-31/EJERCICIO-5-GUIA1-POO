@@ -1,0 +1,10 @@
+C:\Users\EMjr\Documents\Universidad\Ciclo 02 -2021\POO\Guias\Tienda_Electrodomesticos\Tienda_Electrodomesticos\bin\Debug\Tienda_Electrodomesticos.exe.config
+C:\Users\EMjr\Documents\Universidad\Ciclo 02 -2021\POO\Guias\Tienda_Electrodomesticos\Tienda_Electrodomesticos\bin\Debug\Tienda_Electrodomesticos.exe
+C:\Users\EMjr\Documents\Universidad\Ciclo 02 -2021\POO\Guias\Tienda_Electrodomesticos\Tienda_Electrodomesticos\bin\Debug\Tienda_Electrodomesticos.pdb
+C:\Users\EMjr\Documents\Universidad\Ciclo 02 -2021\POO\Guias\Tienda_Electrodomesticos\Tienda_Electrodomesticos\obj\Debug\Tienda_Electrodomesticos.csprojAssemblyReference.cache
+C:\Users\EMjr\Documents\Universidad\Ciclo 02 -2021\POO\Guias\Tienda_Electrodomesticos\Tienda_Electrodomesticos\obj\Debug\Tienda_Electrodomesticos.Form1.resources
+C:\Users\EMjr\Documents\Universidad\Ciclo 02 -2021\POO\Guias\Tienda_Electrodomesticos\Tienda_Electrodomesticos\obj\Debug\Tienda_Electrodomesticos.Properties.Resources.resources
+C:\Users\EMjr\Documents\Universidad\Ciclo 02 -2021\POO\Guias\Tienda_Electrodomesticos\Tienda_Electrodomesticos\obj\Debug\Tienda_Electrodomesticos.csproj.GenerateResource.cache
+C:\Users\EMjr\Documents\Universidad\Ciclo 02 -2021\POO\Guias\Tienda_Electrodomesticos\Tienda_Electrodomesticos\obj\Debug\Tienda_Electrodomesticos.csproj.CoreCompileInputs.cache
+C:\Users\EMjr\Documents\Universidad\Ciclo 02 -2021\POO\Guias\Tienda_Electrodomesticos\Tienda_Electrodomesticos\obj\Debug\Tienda_Electrodomesticos.exe
+C:\Users\EMjr\Documents\Universidad\Ciclo 02 -2021\POO\Guias\Tienda_Electrodomesticos\Tienda_Electrodomesticos\obj\Debug\Tienda_Electrodomesticos.pdb
