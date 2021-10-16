@@ -28,28 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnRegresar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
-            this.txtModelo = new System.Windows.Forms.TextBox();
+            this.txtCorreo = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.btnGenerar = new System.Windows.Forms.Button();
             this.lb = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtCosto = new System.Windows.Forms.TextBox();
-            this.rtxtDetalles = new System.Windows.Forms.RichTextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtEdad = new System.Windows.Forms.TextBox();
+            this.rtxtCorreos = new System.Windows.Forms.RichTextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.txtApellido = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAniadir = new System.Windows.Forms.Button();
+            this.errorProviderCliente = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderCliente)).BeginInit();
             this.SuspendLayout();
             // 
             // btnRegresar
@@ -74,6 +77,7 @@
             this.btnGuardar.TabIndex = 26;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // label8
             // 
@@ -87,22 +91,22 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.txtApellido);
+            this.groupBox2.Controls.Add(this.txtNombre);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.dtpFecha);
-            this.groupBox2.Controls.Add(this.txtModelo);
+            this.groupBox2.Controls.Add(this.txtCorreo);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.groupBox1);
             this.groupBox2.Controls.Add(this.lb);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.txtCosto);
+            this.groupBox2.Controls.Add(this.txtEdad);
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.Black;
             this.groupBox2.Location = new System.Drawing.Point(29, 64);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(450, 258);
+            this.groupBox2.Size = new System.Drawing.Size(474, 258);
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Informacion";
@@ -124,14 +128,16 @@
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(183, 21);
             this.dtpFecha.TabIndex = 14;
+            this.dtpFecha.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFecha_Validating);
+            this.dtpFecha.Validated += new System.EventHandler(this.dtpFecha_Validated);
             // 
-            // txtModelo
+            // txtCorreo
             // 
-            this.txtModelo.Location = new System.Drawing.Point(230, 100);
-            this.txtModelo.Name = "txtModelo";
-            this.txtModelo.Size = new System.Drawing.Size(123, 21);
-            this.txtModelo.TabIndex = 15;
-            this.txtModelo.TextChanged += new System.EventHandler(this.txtModelo_TextChanged);
+            this.txtCorreo.Location = new System.Drawing.Point(230, 100);
+            this.txtCorreo.Name = "txtCorreo";
+            this.txtCorreo.Size = new System.Drawing.Size(131, 21);
+            this.txtCorreo.TabIndex = 15;
+            this.txtCorreo.TextChanged += new System.EventHandler(this.txtModelo_TextChanged);
             // 
             // label7
             // 
@@ -152,7 +158,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.Gray;
             this.groupBox1.Location = new System.Drawing.Point(224, 19);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(216, 49);
+            this.groupBox1.Size = new System.Drawing.Size(244, 49);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Codigo";
@@ -162,8 +168,9 @@
             this.txtCodigo.Location = new System.Drawing.Point(83, 19);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.ReadOnly = true;
-            this.txtCodigo.Size = new System.Drawing.Size(107, 21);
+            this.txtCodigo.Size = new System.Drawing.Size(143, 21);
             this.txtCodigo.TabIndex = 17;
+            this.txtCodigo.TextChanged += new System.EventHandler(this.txtCodigo_TextChanged);
             // 
             // btnGenerar
             // 
@@ -174,6 +181,7 @@
             this.btnGenerar.TabIndex = 19;
             this.btnGenerar.Text = "Generar";
             this.btnGenerar.UseVisualStyleBackColor = true;
+            this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
             // 
             // lb
             // 
@@ -197,71 +205,86 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Apellido:";
             // 
-            // txtCosto
+            // txtEdad
             // 
-            this.txtCosto.Location = new System.Drawing.Point(66, 181);
-            this.txtCosto.Name = "txtCosto";
-            this.txtCosto.Size = new System.Drawing.Size(138, 21);
-            this.txtCosto.TabIndex = 16;
+            this.txtEdad.Location = new System.Drawing.Point(66, 181);
+            this.txtEdad.Name = "txtEdad";
+            this.txtEdad.Size = new System.Drawing.Size(138, 21);
+            this.txtEdad.TabIndex = 16;
             // 
-            // rtxtDetalles
+            // rtxtCorreos
             // 
-            this.rtxtDetalles.Location = new System.Drawing.Point(10, 54);
-            this.rtxtDetalles.Name = "rtxtDetalles";
-            this.rtxtDetalles.Size = new System.Drawing.Size(191, 90);
-            this.rtxtDetalles.TabIndex = 12;
-            this.rtxtDetalles.Text = "";
+            this.rtxtCorreos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtxtCorreos.Location = new System.Drawing.Point(10, 54);
+            this.rtxtCorreos.Name = "rtxtCorreos";
+            this.rtxtCorreos.Size = new System.Drawing.Size(228, 90);
+            this.rtxtCorreos.TabIndex = 12;
+            this.rtxtCorreos.Text = "";
+            this.rtxtCorreos.TextChanged += new System.EventHandler(this.rtxtCorreos_TextChanged);
             // 
-            // textBox1
+            // txtNombre
             // 
-            this.textBox1.Location = new System.Drawing.Point(21, 44);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(183, 21);
-            this.textBox1.TabIndex = 21;
+            this.txtNombre.Location = new System.Drawing.Point(21, 44);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(183, 21);
+            this.txtNombre.TabIndex = 21;
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
+            this.txtNombre.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtNombre_KeyUp);
+            this.txtNombre.Validating += new System.ComponentModel.CancelEventHandler(this.textBox1_Validating);
             // 
-            // textBox2
+            // txtApellido
             // 
-            this.textBox2.Location = new System.Drawing.Point(21, 91);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(183, 21);
-            this.textBox2.TabIndex = 22;
+            this.txtApellido.Location = new System.Drawing.Point(21, 91);
+            this.txtApellido.Name = "txtApellido";
+            this.txtApellido.Size = new System.Drawing.Size(183, 21);
+            this.txtApellido.TabIndex = 22;
+            this.txtApellido.TextChanged += new System.EventHandler(this.txtApellido_TextChanged);
+            this.txtApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellido_KeyPress);
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button1);
-            this.groupBox3.Controls.Add(this.rtxtDetalles);
+            this.groupBox3.Controls.Add(this.btnAniadir);
+            this.groupBox3.Controls.Add(this.rtxtCorreos);
             this.groupBox3.Location = new System.Drawing.Point(224, 75);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(216, 163);
+            this.groupBox3.Size = new System.Drawing.Size(244, 163);
             this.groupBox3.TabIndex = 23;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Correo electronicos";
             // 
-            // button1
+            // btnAniadir
             // 
-            this.button1.Location = new System.Drawing.Point(135, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(66, 28);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Añadir ↓";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAniadir.Location = new System.Drawing.Point(160, 21);
+            this.btnAniadir.Name = "btnAniadir";
+            this.btnAniadir.Size = new System.Drawing.Size(66, 28);
+            this.btnAniadir.TabIndex = 13;
+            this.btnAniadir.Text = "Añadir ↓";
+            this.btnAniadir.UseVisualStyleBackColor = true;
+            this.btnAniadir.Click += new System.EventHandler(this.btnAniadir_Click);
+            // 
+            // errorProviderCliente
+            // 
+            this.errorProviderCliente.ContainerControl = this;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(511, 383);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(538, 383);
             this.Controls.Add(this.btnRegresar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.groupBox2);
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "Clientes";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderCliente)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,18 +298,19 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dtpFecha;
-        private System.Windows.Forms.TextBox txtModelo;
+        private System.Windows.Forms.TextBox txtCorreo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Button btnGenerar;
         private System.Windows.Forms.Label lb;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtCosto;
-        private System.Windows.Forms.RichTextBox rtxtDetalles;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtEdad;
+        private System.Windows.Forms.RichTextBox rtxtCorreos;
+        private System.Windows.Forms.TextBox txtApellido;
+        private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAniadir;
+        private System.Windows.Forms.ErrorProvider errorProviderCliente;
     }
 }
