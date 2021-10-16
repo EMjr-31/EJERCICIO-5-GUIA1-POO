@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+// Expresiones regulares
+using System.Text.RegularExpressions;
 
 namespace Tienda_Electrodomesticos
 {
     public partial class Form1 : Form
     {
-        ///matriz de productos y marcas de los electrofomesticos
+        ///matriz de productos y marcas de los electrofomesticos.vs
         string[,] Productos = new string[4,5]{ { "Licuadoras" ,"Cafeteras" ,"Hornos Eléctricos","Aspiradoras","Planchas"},
                                              {"Ninja","Keurig","Sindelen","Philips","Rowenta" },
                                              { "Oster","Black and Decker ","Thomas","Dyson","Aigostar " },
@@ -63,12 +65,25 @@ namespace Tienda_Electrodomesticos
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-
+            GenerarCodigo();
         }
 
         private void txtCodigo_MouseClick(object sender, MouseEventArgs e)
         {
             MessageBox.Show("El codigo de producto se genera automaticament.\nClick sobre el boton Generar");
         }
+
+        public void GenerarCodigo()
+        {
+            //Generador de codigos 
+            string Texto1 = cbxProductos.Text;
+            string Texto2 = cbxMarca.Text;
+            //Usando expresiones regulares obtendremos Dos incioales
+            Match Letra1 = Regex.Match(Texto1, @"\w");
+            Match Letra2 = Regex.Match(Texto2, @"\w");
+            MessageBox.Show(Letra1.Value+Letra2.Value);
+
+        }
     }
+
 }
