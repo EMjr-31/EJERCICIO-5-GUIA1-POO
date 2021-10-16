@@ -21,6 +21,8 @@ namespace Tienda_Electrodomesticos
                                              { "Hamilton Beach","Bialetti","Daewoo"," Xiaomi","Oster" }};
         ///Contador de Codigo
         int cont=1;
+        ///Validador de errores 
+        bool ok = true;
         public Form1()
         {
             InitializeComponent();
@@ -46,6 +48,8 @@ namespace Tienda_Electrodomesticos
 
         private void cbxProductos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ///Si tiene error, se corrige
+            errorProviderProductos.SetError(cbxProductos, "");
             //Limpiar combobox Marcas
             cbxMarca.Text = "";
             ///Si el codigo ha sido generado se limpia
@@ -112,11 +116,245 @@ namespace Tienda_Electrodomesticos
         //Funcion para validar campos 
         private bool ValidarCampos()
         {
-            bool ok =true;
-
-
+            //Cambos nulos
+            if (txtModelo.Text == "")
+            {
+                ok = false;
+                errorProviderProductos.SetError(txtModelo, "Ingrese el modelo");
+            }
+            if (cbxProductos.Text == "")
+            {
+                ok = false;
+                errorProviderProductos.SetError(cbxProductos, "Seleccione el tipo de producto");
+            }
+            if (cbxMarca.Text == "")
+            {
+                ok = false;
+                errorProviderProductos.SetError(cbxMarca, "Seleccione la marca");
+            }
+            if (txtCodigo.Text == "")
+            {
+                ok = false;
+                errorProviderProductos.SetError(txtCodigo, "Genere el codigo");
+            }
+            if (txtCosto.Text == "")
+            {
+                ok = false;
+                errorProviderProductos.SetError(txtCosto, "Ingrese el costo del Producto");
+            }
+            if (txtPrecio.Text == "")
+            {
+                ok = false;
+                errorProviderProductos.SetError(txtPrecio, "Ingrese el precio del Producto");
+            }
+            if (txtCantidad.Text == "")
+            {
+                ok = false;
+                errorProviderProductos.SetError(txtCantidad, "Ingrese La cantidad de Producto");
+            }
+            if (rtxtDetalles.Text == "")
+            {
+                ok = false;
+                errorProviderProductos.SetError(rtxtDetalles, "Ingrese los Detalles del producto");
+            }
+            //validacion de fecha 
+            string fecha = dtpFecha.Value.ToString("dd/MM/yyyy"); ;
+            string hoy = DateTime.Now.ToString("dd/MM/yyyy");
+            if (!(fecha == hoy))
+            {
+                ok = false;
+                errorProviderProductos.SetError(dtpFecha, "La fecha debe ser la del dia de hoy");
+            } 
             return ok;
         }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            ValidarCampos();
+            if (ValidarCampos()==true || ok==true )
+            {
+                MessageBox.Show("Producto Registrado con exito");
+                cont++;
+                limpiar();
+            }
+        }
+        
+        ///Correccion de Errores
+        private void cbxMarca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ///Si tiene error, se corrige
+            errorProviderProductos.SetError(cbxMarca, "");
+            ok = true;
+        }
+
+        private void txtModelo_TextChanged(object sender, EventArgs e)
+        {
+            ///Si tiene error, se corrige
+            errorProviderProductos.SetError(txtModelo, "");
+            ok = true;
+        }
+
+        private void rtxtDetalles_TextChanged(object sender, EventArgs e)
+        {
+            ///Si tiene error, se corrige
+            errorProviderProductos.SetError(rtxtDetalles, "");
+            ok = true;
+        }
+
+        private void txtCosto_TextChanged(object sender, EventArgs e)
+        {
+            ///Si tiene error, se corrige
+            errorProviderProductos.SetError(txtCosto, "");
+            ok = true;
+        }
+
+        private void txtPrecio_TextChanged(object sender, EventArgs e)
+        {
+            ///Si tiene error, se corrige
+            errorProviderProductos.SetError(txtPrecio, "");
+            ok = true;
+        }
+
+        private void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
+            ///Si tiene error, se corrige
+            errorProviderProductos.SetError(txtCantidad, "");
+            ok = true;
+        }
+
+        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+            ///Si tiene error, se corrige
+            errorProviderProductos.SetError(txtCodigo, "");
+            ok = true;
+        }
+        private void dtpFecha_TabIndexChanged(object sender, EventArgs e)
+        {   
+            ///Si tiene error, se corrige
+            errorProviderProductos.SetError(dtpFecha, "");
+            ok = true;
+        }
+
+        ///EVENTOS VALIDATING 
+        private void txtCosto_Validating(object sender, CancelEventArgs e)
+        {
+            double costo;
+            if (!double.TryParse(txtCosto.Text, out costo))
+            {
+                ok = false;
+                errorProviderProductos.SetError(txtCosto, "Ingrese datos numericos");
+            }
+            else {
+                ok = true;
+            }
+        }
+
+        private void txtPrecio_Validating(object sender, CancelEventArgs e)
+        {
+            double precio;
+            if (!double.TryParse(txtCosto.Text, out precio))
+            {
+                ok = false;
+                errorProviderProductos.SetError(txtPrecio, "Ingrese datos numericos");
+            }
+            else
+            {
+                ok = true;
+            }
+        }
+
+        private void txtCantidad_Validating(object sender, CancelEventArgs e)
+        {
+            int cantidad;
+            if (!int.TryParse(txtCantidad.Text, out cantidad))
+            {
+                ok = false;
+                errorProviderProductos.SetError(txtCantidad, "Ingrese datos numericos");
+            }
+            else
+            {
+                ok = true;
+            }
+        }
+        private void dtpFecha_Validating(object sender, CancelEventArgs e)
+        {
+            string fecha = dtpFecha.Value.ToString("dd/MM/yyyy"); ;
+            string hoy = DateTime.Now.ToString("dd/MM/yyyy");
+            if (!(fecha == hoy))
+            {
+                ok = false;
+                errorProviderProductos.SetError(dtpFecha, "La fecha debe ser la del dia de hoy");
+            }
+            else
+            {
+                ok = true;
+                errorProviderProductos.SetError(dtpFecha, "");
+            }
+        }
+
+        ///EVENTOS VALIDATED
+        private void txtPrecio_Validated(object sender, EventArgs e)
+        {
+            try
+            {
+                ///Varificar que el precio sea 20% mayor que el precio 
+                double costo = double.Parse(txtCosto.Text), precio = double.Parse(txtPrecio.Text), precioIdeal;
+                precioIdeal = costo * 1.2;
+                if (!(precio >= precioIdeal))
+                {
+                    ok = false;
+                    errorProviderProductos.SetError(txtPrecio, "El precio debe ser 20% mayor al costo");
+                }
+                else
+                {
+                    ok = true;
+                }
+            }
+            catch (Exception )
+            {
+
+            }
+
+        }
+        private void txtCantidad_Validated(object sender, EventArgs e)
+        {
+            try
+            {
+                //verificar que la cantidad debe ser mayor que cero 
+                int cantidad = int.Parse(txtCantidad.Text);
+                if (!(cantidad > 0))
+                {
+                    ok = false;
+                    errorProviderProductos.SetError(txtCantidad, "La cantidad debe ser mayor que cero");
+                }
+                else
+                {
+                    ok = true;
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+        ////Metodo limpiar
+        public void limpiar()
+        {
+            cbxProductos.Text="";
+            cbxMarca.Text = "";
+            txtCodigo.Clear();
+            txtModelo.Clear();
+            rtxtDetalles.Clear();
+            txtCosto.Clear();
+            txtPrecio.Clear();
+            txtCantidad.Clear();
+            cbxProductos.Focus();
+        }
+        private void txtCantidad_VisibleChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 
 }

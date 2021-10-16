@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lb = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,12 +48,14 @@
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.btnGenerar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtCodigo = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnRegresar = new System.Windows.Forms.Button();
+            this.errorProviderProductos = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderProductos)).BeginInit();
             this.SuspendLayout();
             // 
             // lb
@@ -148,6 +151,7 @@
             this.cbxMarca.Name = "cbxMarca";
             this.cbxMarca.Size = new System.Drawing.Size(181, 23);
             this.cbxMarca.TabIndex = 9;
+            this.cbxMarca.SelectedIndexChanged += new System.EventHandler(this.cbxMarca_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -166,6 +170,7 @@
             this.rtxtDetalles.Size = new System.Drawing.Size(183, 96);
             this.rtxtDetalles.TabIndex = 12;
             this.rtxtDetalles.Text = "";
+            this.rtxtDetalles.TextChanged += new System.EventHandler(this.rtxtDetalles_TextChanged);
             // 
             // label9
             // 
@@ -184,6 +189,8 @@
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(192, 21);
             this.dtpFecha.TabIndex = 14;
+            this.dtpFecha.TabIndexChanged += new System.EventHandler(this.dtpFecha_TabIndexChanged);
+            this.dtpFecha.Validating += new System.ComponentModel.CancelEventHandler(this.dtpFecha_Validating);
             // 
             // txtModelo
             // 
@@ -191,6 +198,7 @@
             this.txtModelo.Name = "txtModelo";
             this.txtModelo.Size = new System.Drawing.Size(181, 21);
             this.txtModelo.TabIndex = 15;
+            this.txtModelo.TextChanged += new System.EventHandler(this.txtModelo_TextChanged);
             // 
             // txtCosto
             // 
@@ -198,6 +206,8 @@
             this.txtCosto.Name = "txtCosto";
             this.txtCosto.Size = new System.Drawing.Size(190, 21);
             this.txtCosto.TabIndex = 16;
+            this.txtCosto.TextChanged += new System.EventHandler(this.txtCosto_TextChanged);
+            this.txtCosto.Validating += new System.ComponentModel.CancelEventHandler(this.txtCosto_Validating);
             // 
             // txtPrecio
             // 
@@ -205,6 +215,9 @@
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(190, 21);
             this.txtPrecio.TabIndex = 17;
+            this.txtPrecio.TextChanged += new System.EventHandler(this.txtPrecio_TextChanged);
+            this.txtPrecio.Validating += new System.ComponentModel.CancelEventHandler(this.txtPrecio_Validating);
+            this.txtPrecio.Validated += new System.EventHandler(this.txtPrecio_Validated);
             // 
             // txtCantidad
             // 
@@ -212,6 +225,10 @@
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(190, 21);
             this.txtCantidad.TabIndex = 18;
+            this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
+            this.txtCantidad.VisibleChanged += new System.EventHandler(this.txtCantidad_VisibleChanged);
+            this.txtCantidad.Validating += new System.ComponentModel.CancelEventHandler(this.txtCantidad_Validating);
+            this.txtCantidad.Validated += new System.EventHandler(this.txtCantidad_Validated);
             // 
             // btnGenerar
             // 
@@ -232,10 +249,20 @@
             this.groupBox1.ForeColor = System.Drawing.Color.Gray;
             this.groupBox1.Location = new System.Drawing.Point(224, 19);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(199, 49);
+            this.groupBox1.Size = new System.Drawing.Size(216, 49);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Codigo";
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.Location = new System.Drawing.Point(83, 19);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.ReadOnly = true;
+            this.txtCodigo.Size = new System.Drawing.Size(107, 21);
+            this.txtCodigo.TabIndex = 17;
+            this.txtCodigo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtCodigo_MouseClick);
+            this.txtCodigo.TextChanged += new System.EventHandler(this.txtCodigo_TextChanged);
             // 
             // groupBox2
             // 
@@ -260,19 +287,10 @@
             this.groupBox2.ForeColor = System.Drawing.Color.Black;
             this.groupBox2.Location = new System.Drawing.Point(26, 49);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(440, 306);
+            this.groupBox2.Size = new System.Drawing.Size(450, 306);
             this.groupBox2.TabIndex = 21;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Informacion";
-            // 
-            // txtCodigo
-            // 
-            this.txtCodigo.Location = new System.Drawing.Point(84, 20);
-            this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.ReadOnly = true;
-            this.txtCodigo.Size = new System.Drawing.Size(109, 21);
-            this.txtCodigo.TabIndex = 17;
-            this.txtCodigo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtCodigo_MouseClick);
             // 
             // btnGuardar
             // 
@@ -285,6 +303,7 @@
             this.btnGuardar.TabIndex = 22;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnRegresar
             // 
@@ -296,6 +315,10 @@
             this.btnRegresar.TabIndex = 23;
             this.btnRegresar.Text = "<---";
             this.btnRegresar.UseVisualStyleBackColor = false;
+            // 
+            // errorProviderProductos
+            // 
+            this.errorProviderProductos.ContainerControl = this;
             // 
             // Form1
             // 
@@ -314,6 +337,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderProductos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -344,6 +368,7 @@
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnRegresar;
+        private System.Windows.Forms.ErrorProvider errorProviderProductos;
     }
 }
 
