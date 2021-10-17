@@ -10,3 +10,4 @@ C:\Users\EMjr\Documents\Universidad\Ciclo 02 -2021\POO\Guias\Tienda_Electrodomes
 C:\Users\EMjr\Documents\Universidad\Ciclo 02 -2021\POO\Guias\Tienda_Electrodomesticos\Tienda_Electrodomesticos\obj\Debug\Tienda_Electrodomesticos.pdb
 C:\Users\EMjr\Documents\Universidad\Ciclo 02 -2021\POO\Guias\Tienda_Electrodomesticos\Tienda_Electrodomesticos\obj\Debug\Tienda_Electrodomesticos.Form2.resources
 C:\Users\EMjr\Documents\Universidad\Ciclo 02 -2021\POO\Guias\Tienda_Electrodomesticos\Tienda_Electrodomesticos\obj\Debug\Tienda_Electrodomesticos.Ventas.resources
+C:\Users\EMjr\Documents\Universidad\Ciclo 02 -2021\POO\Guias\Tienda_Electrodomesticos\Tienda_Electrodomesticos\obj\Debug\Tienda_Electrodomesticos.Menu.resources

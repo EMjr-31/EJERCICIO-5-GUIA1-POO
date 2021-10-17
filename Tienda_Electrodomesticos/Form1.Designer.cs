@@ -315,6 +315,7 @@
             this.btnRegresar.TabIndex = 23;
             this.btnRegresar.Text = "<---";
             this.btnRegresar.UseVisualStyleBackColor = false;
+            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // errorProviderProductos
             // 

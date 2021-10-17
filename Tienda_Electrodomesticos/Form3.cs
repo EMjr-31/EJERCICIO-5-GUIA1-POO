@@ -14,7 +14,13 @@ namespace Tienda_Electrodomesticos
     {
         //Indices de busqueda 
         int IndexC = -1;
-        int indexP = -1;
+        int IndexP = -1;
+        //Variables globales 
+        string datosCliente, datosProductos, Nproducto, fac="Factura";
+        double precioP, total = 0;
+        int edad, cantidadDis;
+        ///Validador de errores 
+        bool ok = true;
         /*LOS CLIENTES Y PRODUCTOS SERAN INGRESADOS POR DEFECTO
          * DEBIDO A QUE NO SE CUENTA CON ALAMCENAMIENTO DE DATOS
          * LOS DATOS SON DE CARACTER ILUSTRATIVO PARA EL FUNCIONAMIENTO DEL FORM*/
@@ -43,6 +49,51 @@ namespace Tienda_Electrodomesticos
             dgvProductos.DataSource = productos;
         }
 
+        /////Funcion para validar campos 
+        private bool ValidarCampos()
+        {
+            if (rtxtInfoCliente.Text == "")
+            {
+                ok = false;
+                errorProvider1.SetError(rtxtInfoCliente, "Seleccione un producto donde click sobre el");
+            }
+            if (rtxtCarrito.Text == "")
+            {
+                ok = false;
+                errorProvider1.SetError(btnAniadir, "Ingrese Productos al carrito");
+            }
+            return ok;
+        }
+        ///Correccion de errores
+        private void rtxtInfoCliente_TextChanged(object sender, EventArgs e)
+        {
+            ok = true;
+            errorProvider1.SetError(rtxtInfoCliente, "");
+            errorProvider1.SetError(dgvCliente, "");
+        }
+        private void rtxtCarrito_TextChanged(object sender, EventArgs e)
+        {
+            ok = true;
+            errorProvider1.SetError(btnAniadir, "");
+        }
+
+        private void txtCantidaComprar_TextChanged(object sender, EventArgs e)
+        {
+            ok = true;
+            errorProvider1.SetError(txtCantidaComprar, "");
+        }
+
+        private void txtCredito_TextChanged(object sender, EventArgs e)
+        {
+            ok = true;
+            errorProvider1.SetError(txtCredito, "");
+        }
+        private void txtContado_TextChanged(object sender, EventArgs e)
+        {
+            ok = true;
+            errorProvider1.SetError(txtContado, "");
+        }
+        //Busqueda automatica
         private void txtPC_KeyUp(object sender, KeyEventArgs e)
         {
             if (rbtnCodigoC.Checked == true)
@@ -106,7 +157,7 @@ namespace Tienda_Electrodomesticos
         {
             dgvProductos.DataSource = null;
             string dato = txtPP.Text.Trim();
-            dgvProductos.DataSource =productos.FindAll(p => p.Modelo.StartsWith(dato));
+            dgvProductos.DataSource = productos.FindAll(p => p.Modelo.StartsWith(dato));
         }
         public void buscarProducto_Marca()
         {
@@ -120,6 +171,200 @@ namespace Tienda_Electrodomesticos
             string dato = txtPP.Text.Trim();
             dgvProductos.DataSource = productos.FindAll(p => p.Producto.StartsWith(dato));
         }
+        ///Metodos de seleccion
+
+        private void dgvCliente_DoubleClick(object sender, EventArgs e)
+        {
+            rtxtInfoCliente.Text = "";
+            datosCliente = "";
+            DataGridViewRow selected = dgvCliente.SelectedRows[0];
+            int posicion = dgvCliente.Rows.IndexOf(selected);
+            IndexC = posicion;
+            Clientes client = clientes[posicion];
+            DateTime fecha = DateTime.Parse(client.FechaNaci);
+            edad = int.Parse(DateTime.Now.ToString("yyyy")) - int.Parse(fecha.ToString("yyyy"));
+            datosCliente = "Nombre: " + client.Nombre + " " + client.Apellido + "\nEdad: " + edad.ToString() + "\nCorreo: " + client.Correo;
+            rtxtInfoCliente.Text = datosCliente;
+
+        }
+        private void dgvProductos_DoubleClick(object sender, EventArgs e)
+        {
+            rtxtInfoProducto.Text = "";
+            datosProductos = "";
+            DataGridViewRow selected = dgvProductos.SelectedRows[0];
+            int posicionP = dgvProductos.Rows.IndexOf(selected);
+            IndexP = posicionP;
+            Productos produc = productos[posicionP];
+            cantidadDis = produc.Cantidad;
+            precioP = produc.Precio;
+            Nproducto = produc.Producto + " " + produc.Marca;
+            datosProductos = Nproducto + "\n\tPrecio : $" + precioP.ToString();
+            rtxtInfoProducto.Text = datosProductos;
+        }
+        ///Añadir al carrito 
+        private void btnAniadir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int cantidadSol = int.Parse(txtCantidaComprar.Text);
+                if (cantidadSol <= cantidadDis)
+                {
+                    rtxtCarrito.Text = "";
+                    ok = true;
+                    total = total + cantidadSol * precioP;
+                    fac = fac + "\n" + Nproducto + " " + cantidadSol.ToString() + "X" + precioP.ToString() + " = " + (cantidadSol * precioP).ToString();
+                    rtxtCarrito.Text = fac;
+                    txtCantidaComprar.Clear();
+                }
+                else
+                {
+                    ok = false;
+                    errorProvider1.SetError(txtCantidaComprar, "No contamos con esa cantidad de productos");
+                }
+            }
+            catch (Exception)
+            {
+                ok = false;
+                errorProvider1.SetError(txtCantidaComprar, "Ingrese una cantidad correcta");
+            }
+        }
+
+        private void txtCantidaComprar_Validated(object sender, EventArgs e)
+        {
+
+        }
+        ///Metodos de pago 
+        private void rbCredito_Click(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(rbtnContado, "");
+            if ((edad != 0))
+            {
+                ok = true;
+                if (edad > 18)
+                {
+                    lbnumCuenta.Visible = true;
+                    txtCredito.Visible = true;
+                    lbContado.Visible = false;
+                    txtContado.Visible = false;
+                   
+                }
+                else {
+                    lbnumCuenta.Visible = false;
+                    txtCredito.Visible = false;
+                    MessageBox.Show("El cliente no es mayor de edad");
+                }
+            }
+            else
+            {
+                ok = false;
+                errorProvider1.SetError(dgvCliente, "Seleccione un cliente");
+                rbCredito.Checked = false;
+
+            }
+
+        }
+
+        private void rbtnContado_Click(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(rbtnContado, "");
+            if ((edad != 0))
+            {
+                ok = true;
+                if (edad > 18)
+                {
+                    lbnumCuenta.Visible = false;
+                    txtCredito.Visible = false;
+                    lbContado.Visible = true;
+                    txtContado.Visible = true;
+
+                }
+                else
+                {
+                    lbnumCuenta.Visible = false;
+                    txtCredito.Visible = false;
+                }
+            }
+            else
+            {
+                ok = false;
+                rbtnContado.Checked = false;
+                errorProvider1.SetError(dgvCliente, "Seleccione un cliente");
+            }
+        }
+        private void rbtnContado_CheckedChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void bntPagar_Click(object sender, EventArgs e)
+        {
+            ValidarCampos();
+            if (ValidarCampos() == true || ok == true)
+            {
+                if (total > 0)
+                {
+                    fac = fac + "------------------------------\n\tTotal $" + total.ToString();
+                }
+                if (txtContado.Visible == true)
+                {
+                    ok = true;
+                    double cantidad = double.Parse(txtContado.Text);
+                    if (cantidad >= total)
+                    {
+                        MessageBox.Show("Pago exitoso \nCambio $" + (cantidad - total));
+                        limpiar();
+                    }
+                    else
+                    {
+                        ok = false;
+                        errorProvider1.SetError(txtContado, "Ingrese un monto mayor o igual al total a cancelar");
+                    }
+                }
+                if (txtCredito.Visible == true)
+                {
+                    if (!(txtCredito.Text == " "))
+                    {
+                        MessageBox.Show("Pago exitoso");
+                        limpiar();
+                    }
+                    else
+                    {
+                        ok = false;
+                        errorProvider1.SetError(txtCredito, "Ingrese numero de cuenta");
+                    }
+                }
+                if (txtContado.Visible == false && txtContado.Visible == false)
+                {
+                    errorProvider1.SetError(rbtnContado, "Seleccione un metodo de pago");
+                }
+            }
+               
+        }
+
+
+
+        ///Metodos para limpiar
+        private void btnLimpiarCliente_Click(object sender, EventArgs e)
+        {
+            rtxtInfoCliente.Text = "";
+            IndexC = -1;
+            edad = 0;
+        }
+
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            Menu form = new Menu();
+            form.Visible = true;
+            this.Close();
+        }
+
+        private void rbCredito_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+
 
         //Metodo para cargar datos genericos
         public void CargaDatos()
@@ -260,10 +505,14 @@ namespace Tienda_Electrodomesticos
             productos.Add(produc15);
         }
 
+
+
         private void rbnCodigoP_CheckedChanged(object sender, EventArgs e)
         {
 
         }
+
+
 
         private void rbtnMarca_CheckedChanged(object sender, EventArgs e)
         {
@@ -274,7 +523,20 @@ namespace Tienda_Electrodomesticos
         {
 
         }
+        ///Metodo Limpiar 
+        public void limpiar()
+        {
+            rtxtCarrito.Clear();
+            rtxtInfoCliente.Clear();
+            rtxtInfoProducto.Clear();
+            datosCliente = "";
+            datosProductos = "";
+            fac = "Factura";
+            total = 0;
+            edad = 0;
+            txtContado.Clear();
+            txtCredito.Clear();
+        }
 
-       
     }
 }

@@ -33,6 +33,8 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtApellido = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.txtCorreo = new System.Windows.Forms.TextBox();
@@ -43,11 +45,9 @@
             this.lb = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtEdad = new System.Windows.Forms.TextBox();
-            this.rtxtCorreos = new System.Windows.Forms.RichTextBox();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtApellido = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnAniadir = new System.Windows.Forms.Button();
+            this.rtxtCorreos = new System.Windows.Forms.RichTextBox();
             this.errorProviderCliente = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -65,6 +65,7 @@
             this.btnRegresar.TabIndex = 27;
             this.btnRegresar.Text = "<---";
             this.btnRegresar.UseVisualStyleBackColor = false;
+            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // btnGuardar
             // 
@@ -110,6 +111,26 @@
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Informacion";
+            // 
+            // txtApellido
+            // 
+            this.txtApellido.Location = new System.Drawing.Point(21, 91);
+            this.txtApellido.Name = "txtApellido";
+            this.txtApellido.Size = new System.Drawing.Size(183, 21);
+            this.txtApellido.TabIndex = 22;
+            this.txtApellido.TextChanged += new System.EventHandler(this.txtApellido_TextChanged);
+            this.txtApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellido_KeyPress);
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(21, 44);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(183, 21);
+            this.txtNombre.TabIndex = 21;
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
+            this.txtNombre.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtNombre_KeyUp);
+            this.txtNombre.Validating += new System.ComponentModel.CancelEventHandler(this.textBox1_Validating);
             // 
             // label5
             // 
@@ -212,36 +233,6 @@
             this.txtEdad.Size = new System.Drawing.Size(138, 21);
             this.txtEdad.TabIndex = 16;
             // 
-            // rtxtCorreos
-            // 
-            this.rtxtCorreos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtxtCorreos.Location = new System.Drawing.Point(10, 54);
-            this.rtxtCorreos.Name = "rtxtCorreos";
-            this.rtxtCorreos.Size = new System.Drawing.Size(228, 90);
-            this.rtxtCorreos.TabIndex = 12;
-            this.rtxtCorreos.Text = "";
-            this.rtxtCorreos.TextChanged += new System.EventHandler(this.rtxtCorreos_TextChanged);
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.Location = new System.Drawing.Point(21, 44);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(183, 21);
-            this.txtNombre.TabIndex = 21;
-            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
-            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
-            this.txtNombre.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtNombre_KeyUp);
-            this.txtNombre.Validating += new System.ComponentModel.CancelEventHandler(this.textBox1_Validating);
-            // 
-            // txtApellido
-            // 
-            this.txtApellido.Location = new System.Drawing.Point(21, 91);
-            this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(183, 21);
-            this.txtApellido.TabIndex = 22;
-            this.txtApellido.TextChanged += new System.EventHandler(this.txtApellido_TextChanged);
-            this.txtApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellido_KeyPress);
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btnAniadir);
@@ -262,6 +253,16 @@
             this.btnAniadir.Text = "Añadir ↓";
             this.btnAniadir.UseVisualStyleBackColor = true;
             this.btnAniadir.Click += new System.EventHandler(this.btnAniadir_Click);
+            // 
+            // rtxtCorreos
+            // 
+            this.rtxtCorreos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtxtCorreos.Location = new System.Drawing.Point(10, 54);
+            this.rtxtCorreos.Name = "rtxtCorreos";
+            this.rtxtCorreos.Size = new System.Drawing.Size(228, 90);
+            this.rtxtCorreos.TabIndex = 12;
+            this.rtxtCorreos.Text = "";
+            this.rtxtCorreos.TextChanged += new System.EventHandler(this.rtxtCorreos_TextChanged);
             // 
             // errorProviderCliente
             // 

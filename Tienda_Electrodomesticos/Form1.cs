@@ -355,6 +355,12 @@ namespace Tienda_Electrodomesticos
 
         }
 
+        private void btnRegresar_Click(object sender, EventArgs e)
+        {
+            Menu form = new Menu();
+            form.Visible = true;
+            this.Close();
+        }
     }
 
 }

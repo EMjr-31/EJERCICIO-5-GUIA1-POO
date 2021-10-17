@@ -16,7 +16,7 @@ namespace Tienda_Electrodomesticos
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Ventas());
+            Application.Run(new Menu());
         }
     }
 }

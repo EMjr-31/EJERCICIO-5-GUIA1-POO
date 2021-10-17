@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnRegresar = new System.Windows.Forms.Button();
             this.bntPagar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
@@ -45,12 +46,11 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lbContado = new System.Windows.Forms.Label();
+            this.txtContado = new System.Windows.Forms.TextBox();
             this.rbtnContado = new System.Windows.Forms.RadioButton();
             this.rbCredito = new System.Windows.Forms.RadioButton();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.rtxtCarrito = new System.Windows.Forms.RichTextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnAniadir = new System.Windows.Forms.Button();
             this.txtCantidaComprar = new System.Windows.Forms.TextBox();
@@ -63,6 +63,9 @@
             this.rbtnProducto = new System.Windows.Forms.RadioButton();
             this.txtPP = new System.Windows.Forms.TextBox();
             this.dgvProductos = new System.Windows.Forms.DataGridView();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lbnumCuenta = new System.Windows.Forms.Label();
+            this.txtCredito = new System.Windows.Forms.MaskedTextBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCliente)).BeginInit();
             this.Informacion.SuspendLayout();
@@ -73,6 +76,7 @@
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnRegresar
@@ -85,6 +89,7 @@
             this.btnRegresar.TabIndex = 31;
             this.btnRegresar.Text = "<---";
             this.btnRegresar.UseVisualStyleBackColor = false;
+            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
             // 
             // bntPagar
             // 
@@ -97,6 +102,7 @@
             this.bntPagar.TabIndex = 30;
             this.bntPagar.Text = "Pagar ";
             this.bntPagar.UseVisualStyleBackColor = false;
+            this.bntPagar.Click += new System.EventHandler(this.bntPagar_Click);
             // 
             // label8
             // 
@@ -131,6 +137,7 @@
             this.btnLimpiarCliente.TabIndex = 14;
             this.btnLimpiarCliente.Text = "Limpiar";
             this.btnLimpiarCliente.UseVisualStyleBackColor = true;
+            this.btnLimpiarCliente.Click += new System.EventHandler(this.btnLimpiarCliente_Click);
             // 
             // dgvCliente
             // 
@@ -140,6 +147,7 @@
             this.dgvCliente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCliente.Size = new System.Drawing.Size(459, 234);
             this.dgvCliente.TabIndex = 16;
+            this.dgvCliente.DoubleClick += new System.EventHandler(this.dgvCliente_DoubleClick);
             // 
             // Informacion
             // 
@@ -159,6 +167,7 @@
             this.rtxtInfoCliente.Size = new System.Drawing.Size(247, 100);
             this.rtxtInfoCliente.TabIndex = 12;
             this.rtxtInfoCliente.Text = "";
+            this.rtxtInfoCliente.TextChanged += new System.EventHandler(this.rtxtInfoCliente_TextChanged);
             // 
             // groupBox3
             // 
@@ -241,7 +250,7 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.groupBox7);
-            this.groupBox6.Controls.Add(this.richTextBox1);
+            this.groupBox6.Controls.Add(this.rtxtCarrito);
             this.groupBox6.Location = new System.Drawing.Point(525, 19);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(276, 247);
@@ -251,9 +260,10 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.label4);
-            this.groupBox7.Controls.Add(this.textBox2);
-            this.groupBox7.Controls.Add(this.textBox1);
+            this.groupBox7.Controls.Add(this.txtCredito);
+            this.groupBox7.Controls.Add(this.lbnumCuenta);
+            this.groupBox7.Controls.Add(this.lbContado);
+            this.groupBox7.Controls.Add(this.txtContado);
             this.groupBox7.Controls.Add(this.rbtnContado);
             this.groupBox7.Controls.Add(this.rbCredito);
             this.groupBox7.Location = new System.Drawing.Point(9, 141);
@@ -263,28 +273,22 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Forma Pago";
             // 
-            // label4
+            // lbContado
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(69, 75);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Contado: ";
+            this.lbContado.AutoSize = true;
+            this.lbContado.Location = new System.Drawing.Point(69, 75);
+            this.lbContado.Name = "lbContado";
+            this.lbContado.Size = new System.Drawing.Size(55, 13);
+            this.lbContado.TabIndex = 4;
+            this.lbContado.Text = "Cantidad: ";
             // 
-            // textBox2
+            // txtContado
             // 
-            this.textBox2.Location = new System.Drawing.Point(127, 72);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 3;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(27, 46);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 20);
-            this.textBox1.TabIndex = 2;
+            this.txtContado.Location = new System.Drawing.Point(127, 72);
+            this.txtContado.Name = "txtContado";
+            this.txtContado.Size = new System.Drawing.Size(100, 20);
+            this.txtContado.TabIndex = 3;
+            this.txtContado.TextChanged += new System.EventHandler(this.txtContado_TextChanged);
             // 
             // rbtnContado
             // 
@@ -296,6 +300,8 @@
             this.rbtnContado.TabStop = true;
             this.rbtnContado.Text = "Contado";
             this.rbtnContado.UseVisualStyleBackColor = true;
+            this.rbtnContado.CheckedChanged += new System.EventHandler(this.rbtnContado_CheckedChanged);
+            this.rbtnContado.Click += new System.EventHandler(this.rbtnContado_Click);
             // 
             // rbCredito
             // 
@@ -307,15 +313,18 @@
             this.rbCredito.TabStop = true;
             this.rbCredito.Text = "Credito";
             this.rbCredito.UseVisualStyleBackColor = true;
+            this.rbCredito.CheckedChanged += new System.EventHandler(this.rbCredito_CheckedChanged);
+            this.rbCredito.Click += new System.EventHandler(this.rbCredito_Click);
             // 
-            // richTextBox1
+            // rtxtCarrito
             // 
-            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.Location = new System.Drawing.Point(9, 19);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(251, 116);
-            this.richTextBox1.TabIndex = 15;
-            this.richTextBox1.Text = "";
+            this.rtxtCarrito.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtxtCarrito.Location = new System.Drawing.Point(9, 19);
+            this.rtxtCarrito.Name = "rtxtCarrito";
+            this.rtxtCarrito.Size = new System.Drawing.Size(251, 116);
+            this.rtxtCarrito.TabIndex = 15;
+            this.rtxtCarrito.Text = "";
+            this.rtxtCarrito.TextChanged += new System.EventHandler(this.rtxtCarrito_TextChanged);
             // 
             // groupBox5
             // 
@@ -334,17 +343,20 @@
             // 
             this.btnAniadir.Location = new System.Drawing.Point(9, 211);
             this.btnAniadir.Name = "btnAniadir";
-            this.btnAniadir.Size = new System.Drawing.Size(184, 23);
+            this.btnAniadir.Size = new System.Drawing.Size(163, 23);
             this.btnAniadir.TabIndex = 16;
             this.btnAniadir.Text = "Añadir al Carrito→";
             this.btnAniadir.UseVisualStyleBackColor = true;
+            this.btnAniadir.Click += new System.EventHandler(this.btnAniadir_Click);
             // 
             // txtCantidaComprar
             // 
             this.txtCantidaComprar.Location = new System.Drawing.Point(9, 180);
             this.txtCantidaComprar.Name = "txtCantidaComprar";
-            this.txtCantidaComprar.Size = new System.Drawing.Size(184, 20);
+            this.txtCantidaComprar.Size = new System.Drawing.Size(163, 20);
             this.txtCantidaComprar.TabIndex = 15;
+            this.txtCantidaComprar.TextChanged += new System.EventHandler(this.txtCantidaComprar_TextChanged);
+            this.txtCantidaComprar.Validated += new System.EventHandler(this.txtCantidaComprar_Validated);
             // 
             // label3
             // 
@@ -436,8 +448,31 @@
             this.dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductos.Location = new System.Drawing.Point(17, 124);
             this.dgvProductos.Name = "dgvProductos";
+            this.dgvProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProductos.Size = new System.Drawing.Size(283, 142);
             this.dgvProductos.TabIndex = 18;
+            this.dgvProductos.DoubleClick += new System.EventHandler(this.dgvProductos_DoubleClick);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // lbnumCuenta
+            // 
+            this.lbnumCuenta.AutoSize = true;
+            this.lbnumCuenta.Location = new System.Drawing.Point(5, 50);
+            this.lbnumCuenta.Name = "lbnumCuenta";
+            this.lbnumCuenta.Size = new System.Drawing.Size(66, 13);
+            this.lbnumCuenta.TabIndex = 5;
+            this.lbnumCuenta.Text = "Num Cuenta";
+            // 
+            // txtCredito
+            // 
+            this.txtCredito.Location = new System.Drawing.Point(86, 46);
+            this.txtCredito.Mask = "0000-0000-0000-0000";
+            this.txtCredito.Name = "txtCredito";
+            this.txtCredito.Size = new System.Drawing.Size(141, 20);
+            this.txtCredito.TabIndex = 33;
             // 
             // Ventas
             // 
@@ -467,6 +502,7 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -501,13 +537,15 @@
         private System.Windows.Forms.RichTextBox rtxtInfoProducto;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.RadioButton rbCredito;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtxtCarrito;
         private System.Windows.Forms.Button btnAniadir;
         private System.Windows.Forms.TextBox txtCantidaComprar;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lbContado;
+        private System.Windows.Forms.TextBox txtContado;
         private System.Windows.Forms.RadioButton rbtnContado;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Label lbnumCuenta;
+        private System.Windows.Forms.MaskedTextBox txtCredito;
     }
 }
